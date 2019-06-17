@@ -2,9 +2,7 @@ package com.test.word.wordpdf.controller;
 
 import com.test.word.wordpdf.service.IWordService;
 import com.test.word.wordpdf.util.WordUtil;
-import org.apache.poi.xwpf.converter.pdf.PdfConverter;
 import org.apache.poi.xwpf.converter.pdf.PdfOptions;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,9 +23,10 @@ public class WordController
 	{
         URL url = this.getClass().getResource("/");
         String classesUrl = url.getPath();
-        String fileUrl = classesUrl + "template/test.docx";
+//        String fileUrl = classesUrl + "template/test.docx";
+        String fileUrl = "C:\\Users\\xyyto\\Desktop\\output.docx";
 
-        String outpath = "C:\\Users\\xyyto\\Desktop\\output.pdf";
+        String outpath = "C:\\Users\\xyyto\\Desktop\\output2.pdf";
 
         InputStream source;
         OutputStream target;
@@ -48,18 +47,27 @@ public class WordController
         }
 	}
 
-    @GetMapping(value = "/wordToPdf2")
-    public void buildTestWordTemplate() throws IOException
-    {
-        XWPFDocument doc = wordService.createWord();
-
-        //输出渲染后的文件
-        FileOutputStream out = new FileOutputStream("C:\\Users\\xyyto\\Desktop\\output.pdf");
-        PdfOptions options = PdfOptions.create();
-        PdfConverter.getInstance().convert(doc, out, options);
-
-        doc.write(out);
-        out.flush();
-        out.close();
-    }
+//    @GetMapping(value = "/wordToPdf2")
+//    public void buildPdfFromTestWordTemplate() throws IOException
+//    {
+//        XWPFDocument doc = wordService.createWord();
+//
+//        //输出渲染后的文件
+//        FileOutputStream out = new FileOutputStream("C:\\Users\\xyyto\\Desktop\\output.pdf");
+//        PdfOptions options = PdfOptions.create();
+//        PdfConverter.getInstance().convert(doc, out, options);
+//    }
+//
+//    @GetMapping(value = "/getWord")
+//    public void getWord() throws IOException
+//    {
+//        XWPFDocument doc = wordService.createWord();
+//
+//        //输出渲染后的文件
+//        FileOutputStream out = new FileOutputStream("C:\\Users\\xyyto\\Desktop\\output.docx");
+//
+//        doc.write(out);
+//        out.flush();
+//        out.close();
+//    }
 }
